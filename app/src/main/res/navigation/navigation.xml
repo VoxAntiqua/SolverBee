@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/inputFragment">
+
+    <fragment
+        android:id="@+id/inputFragment"
+        android:name="com.andrew_padgett.solverbee.ui.input.InputFragment"
+        android:label="InputFragment" />
+    <fragment
+        android:id="@+id/resultsFragment"
+        android:name="com.andrew_padgett.solverbee.ui.results.ResultsFragment"
+        android:label="results_fragment"
+        tools:layout="@layout/results_fragment" />
+</navigation>
