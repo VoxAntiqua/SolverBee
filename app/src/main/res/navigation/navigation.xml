@@ -8,10 +8,18 @@
     <fragment
         android:id="@+id/inputFragment"
         android:name="com.andrew_padgett.solverbee.ui.input.InputFragment"
-        android:label="InputFragment" />
+        android:label="InputFragment" >
+        <action
+            android:id="@+id/action_inputFragment_to_resultsFragment"
+            app:destination="@id/resultsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/resultsFragment"
         android:name="com.andrew_padgett.solverbee.ui.results.ResultsFragment"
         android:label="results_fragment"
-        tools:layout="@layout/results_fragment" />
+        tools:layout="@layout/results_fragment" >
+        <action
+            android:id="@+id/action_resultsFragment_to_inputFragment"
+            app:destination="@id/inputFragment" />
+    </fragment>
 </navigation>

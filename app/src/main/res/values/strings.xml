@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Solver Bee</string>
+    <string name="app_title">Solver Bee</string>
+    <string name="required_letter">Required Letter</string>
+    <string name="available_letters">Available Letters</string>
+    <string name="solve_button_text">Solve!</string>
 </resources>
