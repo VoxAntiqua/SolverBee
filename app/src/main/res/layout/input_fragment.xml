@@ -1,82 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.input.InputFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/app_title_text"
-        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/app_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <variable
+            name="inputViewModel"
+            type="com.andrew_padgett.solverbee.ui.input.InputViewModel" />
+    </data>
 
-    <TextView
-        android:id="@+id/required_letter_label"
-        style="@style/TextAppearance.AppCompat.Subhead"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/required_letter"
-        app:layout_constraintBaseline_toBaselineOf="@+id/required_letter_edit_text"
-        app:layout_constraintEnd_toEndOf="@+id/available_letters_label" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.input.InputFragment">
 
-    <EditText
-        android:id="@+id/required_letter_edit_text"
-        style="@style/TextAppearance.AppCompat.Subhead"
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textCapCharacters"
-        android:textAllCaps="true"
-        app:layout_constraintBottom_toTopOf="@+id/available_letters_edit_text"
-        app:layout_constraintStart_toStartOf="@+id/available_letters_edit_text"
-        app:layout_constraintTop_toBottomOf="@id/app_title_text"
-        app:layout_constraintVertical_bias="0.37"
-        app:layout_constraintVertical_chainStyle="packed" />
+        <TextView
+            android:id="@+id/app_title_text"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/input_title_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/available_letters_edit_text"
-        style="@style/TextAppearance.AppCompat.Subhead"
-        android:layout_width="75dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:ems="10"
-        android:inputType="textCapCharacters"
-        android:textAllCaps="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/available_letters_label"
-        app:layout_constraintTop_toBottomOf="@id/required_letter_edit_text" />
+        <TextView
+            android:id="@+id/required_letter_label"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/required_letter"
+            app:layout_constraintBaseline_toBaselineOf="@+id/required_letter_edit_text"
+            app:layout_constraintEnd_toEndOf="@+id/available_letters_label" />
 
-    <TextView
-        android:id="@+id/available_letters_label"
-        style="@style/TextAppearance.AppCompat.Subhead"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:text="@string/available_letters"
-        app:layout_constraintBaseline_toBaselineOf="@+id/available_letters_edit_text"
-        app:layout_constraintEnd_toStartOf="@+id/available_letters_edit_text"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent" />
+        <EditText
+            android:id="@+id/required_letter_edit_text"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textCapCharacters"
+            android:textAllCaps="true"
+            app:layout_constraintBottom_toTopOf="@+id/available_letters_edit_text"
+            app:layout_constraintStart_toStartOf="@+id/available_letters_edit_text"
+            app:layout_constraintTop_toBottomOf="@id/app_title_text"
+            app:layout_constraintVertical_bias="0.37"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-    <Button
-        android:id="@+id/solve_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/solve_button_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/available_letters_edit_text" />
+        <EditText
+            android:id="@+id/available_letters_edit_text"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:ems="10"
+            android:inputType="textCapCharacters"
+            android:textAllCaps="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/available_letters_label"
+            app:layout_constraintTop_toBottomOf="@id/required_letter_edit_text" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/available_letters_label"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="@string/available_letters"
+            app:layout_constraintBaseline_toBaselineOf="@+id/available_letters_edit_text"
+            app:layout_constraintEnd_toStartOf="@+id/available_letters_edit_text"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/solve_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/solve_button_text"
+            android:onClick="@{() -> inputViewModel.onSubmitInput()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/available_letters_edit_text" />
+
+        <TextView
+            android:id="@+id/instructions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:padding="16dp"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:text="@string/instructions_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/solve_button" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

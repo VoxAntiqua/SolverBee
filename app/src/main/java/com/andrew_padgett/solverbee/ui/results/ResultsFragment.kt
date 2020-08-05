@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import com.andrew_padgett.solverbee.R
+import com.andrew_padgett.solverbee.databinding.ResultsFragmentBinding
 
 class ResultsFragment : Fragment() {
 
@@ -15,12 +15,21 @@ class ResultsFragment : Fragment() {
     }
 
     private lateinit var viewModel: ResultsViewModel
+    private var _binding: ResultsFragmentBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.results_fragment, container, false)
+        _binding = ResultsFragmentBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

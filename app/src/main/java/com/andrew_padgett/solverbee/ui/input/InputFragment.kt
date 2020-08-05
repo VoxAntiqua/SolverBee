@@ -5,8 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.andrew_padgett.solverbee.databinding.InputFragmentBinding
+import com.google.android.material.snackbar.Snackbar
 
 class InputFragment : Fragment() {
 
@@ -14,7 +17,7 @@ class InputFragment : Fragment() {
         fun newInstance() = InputFragment()
     }
 
-    private lateinit var viewModel: InputViewModel
+    private lateinit var inputViewModel: InputViewModel
     private var _binding: InputFragmentBinding? = null
     private val binding get() = _binding!!
 
@@ -24,17 +27,29 @@ class InputFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = InputFragmentBinding.inflate(inflater, container, false)
+
+        val inputViewModelFactory = InputViewModelFactory()
+        val inputViewModel = ViewModelProvider(this, inputViewModelFactory).get(InputViewModel::class.java)
+
+        binding.inputViewModel = inputViewModel
+        binding.setLifecycleOwner(this)
+
+        inputViewModel.navigateToResults.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
+                this.findNavController().navigate(InputFragmentDirections.actionInputFragmentToResultsFragment("a", "bcdef"))
+                Snackbar.make(activity?.findViewById(android.R.id.content)!!, "navigateToResults is true", Snackbar.LENGTH_SHORT).show()
+                inputViewModel.doneNavigating()
+            } else if (it == false) {
+                Snackbar.make(activity?.findViewById(android.R.id.content)!!, "Incorrect input", Snackbar.LENGTH_SHORT).show()
+            }
+        })
+
         return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(InputViewModel::class.java)
     }
 
 }
