@@ -36,7 +36,7 @@ class InputFragment : Fragment() {
 
         inputViewModel.navigateToResults.observe(viewLifecycleOwner, Observer {
             if (it == true) {
-                this.findNavController().navigate(InputFragmentDirections.actionInputFragmentToResultsFragment("a", "bcdef"))
+                this.findNavController().navigate(InputFragmentDirections.actionInputFragmentToResultsFragment(inputViewModel.requiredLetter.value!!, inputViewModel.availableLetters.value!!))
                 Snackbar.make(activity?.findViewById(android.R.id.content)!!, "navigateToResults is true", Snackbar.LENGTH_SHORT).show()
                 inputViewModel.doneNavigating()
             } else if (it == false) {

@@ -14,7 +14,7 @@ class ResultsFragment : Fragment() {
         fun newInstance() = ResultsFragment()
     }
 
-    private lateinit var viewModel: ResultsViewModel
+    private lateinit var resultsViewModel: ResultsViewModel
     private var _binding: ResultsFragmentBinding? = null
     private val binding get() = _binding!!
 
@@ -24,18 +24,19 @@ class ResultsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = ResultsFragmentBinding.inflate(inflater, container, false)
+        val arguments = ResultsFragmentArgs.fromBundle(requireArguments())
+        val viewModelFactory = ResultsViewModelFactory(arguments.requiredLetter, arguments.availableLetters)
+        val resultsViewModel = ViewModelProvider(this, viewModelFactory).get(ResultsViewModel::class.java)
+
+        binding.textView2.text = arguments.requiredLetter + " " + arguments.availableLetters
+
+
         return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ResultsViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }
