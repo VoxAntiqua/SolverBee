@@ -16,12 +16,11 @@ class ResultsViewModel(private val requiredLetter: String,
                        application: Application) : AndroidViewModel(application) {
 
         companion object {
-                const val FILENAME = "/assets/word_list.txt"
+                const val FILENAME = "wordlist_min_4_chars.txt"
         }
 
+        private val allLetters = requiredLetter + availableLetters
 
-//        val inputStream: InputStream = File(FILENAME).inputStream()
-//        val lineList = mutableListOf<String>()
 
         // LiveData for list of words that match constraints
         private var _wordList = MutableLiveData<MutableList<String>>(mutableListOf())
@@ -30,10 +29,19 @@ class ResultsViewModel(private val requiredLetter: String,
 
 
         init {
-                application.assets.open("word_list.txt").bufferedReader().use {
+                application.assets.open(FILENAME).bufferedReader().use { it ->
                         it.forEachLine {
                                 if (it.contains(requiredLetter)) {
-                                        _wordList.value?.add(it)
+                                        var isValidWord = true
+                                        availableLetterCheck@ for (char in it) {
+                                                if (char.isLetter() && !allLetters.contains(char)) {
+                                                        isValidWord = false
+                                                        break@availableLetterCheck
+                                                }
+                                        }
+                                        if (isValidWord) {
+                                                _wordList.value?.add(it)
+                                        }
                                 }
                         }
                 }
